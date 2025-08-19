@@ -4,12 +4,16 @@ on:
   push
 
 env:
-  ACCESS_ID: ${{ vars.ACCESS_ID }}
+  ACCESS_ID_variable: ${{ vars.ACCESS_ID}}
+  ACCESS_ID_secret: ${{ secrets.ACCESS_ID}}
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Echo ACCESS_ID
-      run: echo $ACCESS_ID
+    - name: Echo ACCESS_ID in repository variable
+      run: echo "${{ env.ACCESS_ID_variable }}"
+    
+    - name: Echo ACCESS_ID in repository secrets
+      run: echo "${{ env.ACCESS_ID_secret }}"
